@@ -27,7 +27,10 @@ int main() {
     float densidadepopul2;
     float PIBcapita2;
     float superpoder2;
-    
+
+    int escolha1, escolha2, escolha3;
+    int pontos1 = 0, pontos2 = 0, resultado = 0;
+    int pontuação1 = 0, pontuação2 = 0, rodada = 1;
 
  // Cadastro das Cartas:
     printf("\n === Carta 1 ===\n");
@@ -95,7 +98,7 @@ while (getchar() != '\n');
 
 
  // Exibição das Cartas:
-   printf("\n\n\n===== CARTAS CADASTRADAS =====\n");
+   printf("\n\n===== CARTAS CADASTRADAS =====\n");
 
     printf("\nCarta 1 (%s):", cidade1); //não sei como remover esse espaço extra no final do nome da cidade
     printf("Estado: %c\n", estado1);
@@ -120,11 +123,13 @@ while (getchar() != '\n');
     printf("Pib per Capita: %.2f reais\n", PIBcapita2);
 
  // Exibição dos Resultados:
-    printf("\n\n===Super Poder===\n\n");
+    printf("\n\nComparação das cartas: \n");
+
+    //oculto para adicionar menu interativo com switch, linha 177
+
+    /*
     superpoder1 = (float) populacao1 + area1 + (PIB1*1000000000) + turisticos1 + PIBcapita1 + densidadepopul1;
     superpoder2 = (float) populacao2 + area2 + (PIB2*1000000000) + turisticos2 + PIBcapita2 + densidadepopul2;
-
-    printf("Comparação das cartas: \n");
 
     int comparapopul1 = populacao1 > populacao2;
     if (populacao1 > populacao2){
@@ -167,6 +172,278 @@ while (getchar() != '\n');
         printf("Super Poder: Carta 1 venceu!\n\n");
     } else {
         printf("Super Poder: Carta 2 venceu!\n\n");}
+*/
+
+//menu interativo, escolha de comparação de atributos vencedor no melhor de 3, em caso de empates, rodadas até desempate
+while (rodada <= 3 && pontos1 < 2 && pontos2 < 2){
+printf("%s vs %s", cidade1, cidade2);
+printf("\n***%dº Rodada***\n", rodada);
+    printf("__Escolha qual atributo deseja comparar__\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Número de Pontos Turisticos\n");
+    printf("5. Densidade Populacional\n");
+    printf("6. PIB per Capita\n");
+    printf("Escolha: ");
+    scanf("%d", &escolha1);
+
+switch (escolha1){
+case 1:
+    printf("Você escolheu comparar a População:\n");
+   
+    if (populacao1 > populacao2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);
+pontos1++;} 
+    else if (populacao2 > populacao1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);
+pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 2:
+    printf("Você escolheu comparar a Área:\n");
+
+    if (area1 > area2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (area2 > area1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 3:
+    printf("Você escolheu comparar a PIB:\n");
+
+    if (PIB1 > PIB2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (PIB2 > PIB1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 4:
+     printf("Você escolheu comparar a Numero de Pontos Turisticos:\n");
+
+    if (turisticos1 > turisticos2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (turisticos2 > turisticos1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 5:
+ printf("Você escolheu comparar a Densidade Populacional:\n");
+
+    if (densidadepopul1 > densidadepopul2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (densidadepopul2 > densidadepopul1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 6:
+ printf("Você escolheu comparar a PIB per Capita:\n");
+ 
+    if (PIBcapita1 > PIBcapita2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (PIBcapita2 > PIBcapita1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;  
+
+default:
+        printf("Opção inválida!\n");
+}
+rodada++;}
+printf("\nPlacar atual: Carta 1 = %d | Carta 2 = %d\n", pontos1, pontos2);
+printf("\n***%dº Rodada***\n", rodada);
+
+printf("__Escolha outro atributor para comparar__\n");
+printf("1. População\n");
+printf("2. Área\n");
+printf("3. PIB\n");
+printf("4. Número de Pontos Turisticos\n");
+printf("5. Densidade Populacional\n");
+printf("6. PIB per Capita\n");
+printf("Escolha: \n");
+scanf("%d", &escolha2);
+
+switch (escolha2){
+case 1:
+    printf("Você escolheu comparar a População:\n");
+
+    if (populacao1 > populacao2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (populacao2 > populacao1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 2:
+    printf("Você escolheu comparar a Área:\n");
+
+    if (area1 > area2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (area2 > area1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 3:
+    printf("Você escolheu comparar a PIB:\n");
+
+    if (PIB1 > PIB2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (PIB2 > PIB1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 4:
+     printf("Você escolheu comparar a Numero de Pontos Turisticos:\n");
+
+    if (turisticos1 > turisticos2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (turisticos2 > turisticos1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 5:
+ printf("Você escolheu comparar a Densidade Populacional:\n");
+
+    if (densidadepopul1 < densidadepopul2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (densidadepopul2 > densidadepopul1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 6:
+ printf("Você escolheu comparar a PIB per Capita:\n");
+
+    if (PIBcapita1 > PIBcapita2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (PIBcapita2 > PIBcapita1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;   
+
+default:
+        printf("Opção inválida!\n");
+    if (pontos1 == 2 || pontos2 == 2) {
+        break;}
+rodada++;}
+
+printf("\nPlacar atual: Carta 1 = %d | Carta 2 = %d\n", pontos1, pontos2);
+
+printf("\n===== RESULTADO FINAL =====\n");
+printf("Placar final: Carta 1 = %d | Carta 2 = %d\n", pontos1, pontos2);
+
+if (pontos1 > pontos2) {
+    printf("Carta 1 venceu o jogo!\n");
+} 
+else if (pontos2 > pontos1) {
+    printf("Carta 2 venceu o jogo!\n");
+} 
+else {
+    printf("\nEmpate geral!\n");
+    printf("\n***%dº Rodada de Desempate***\n", rodada);
+{
+
+    printf("__Escolha outro atributor para comparar__\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Número de Pontos Turisticos\n");
+    printf("5. Densidade Populacional\n");
+    printf("6. PIB per Capita\n");
+    printf("Escolha: \n");
+    scanf("%d", &escolha3);
+
+switch (escolha3){
+case 1:
+    printf("Você escolheu comparar a População:\n");
+
+    if (populacao1 > populacao2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (populacao2 > populacao1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 2:
+    printf("Você escolheu comparar a Área:\n");
+
+    if (area1 > area2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (area2 > area1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 3:
+    printf("Você escolheu comparar a PIB:\n");
+
+    if (PIB1 > PIB2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (PIB2 > PIB1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 4:
+     printf("Você escolheu comparar a Numero de Pontos Turisticos:\n");
+
+    if (turisticos1 > turisticos2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (turisticos2 > turisticos1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 5:
+ printf("Você escolheu comparar a Densidade Populacional:\n");
+
+    if (densidadepopul1 < densidadepopul2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (densidadepopul2 > densidadepopul1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;
+
+case 6:
+ printf("Você escolheu comparar a PIB per Capita:\n");
+
+    if (PIBcapita1 > PIBcapita2) {
+    printf("Carta 1 venceu! Pontuação Carta 1 = %d +1\n", pontos1);pontos1++;} 
+    else if (PIBcapita2 > PIBcapita1) {
+    printf("Carta 2 venceu! Pontuação Carta 2 = %d +1\n", pontos2);pontos2++;} 
+    else {
+    printf("Empate, sem pontuação na rodada\n");}
+break;   
+
+default:
+        printf("Opção inválida!\n");}
+    }
+}
 
     return 0;
 }
